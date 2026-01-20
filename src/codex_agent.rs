@@ -5,7 +5,7 @@ use agent_client_protocol::{
     LoadSessionResponse, McpCapabilities, McpServer, McpServerHttp, McpServerStdio,
     NewSessionRequest, NewSessionResponse, PromptCapabilities, PromptRequest, PromptResponse,
     ProtocolVersion, SessionCapabilities, SessionId, SessionInfo, SessionListCapabilities,
-    SetSessionConfigOptionRequest, SetSessionConfigOptionResponse, SetSessionModeRequest,
+    SessionResumeCapabilities, SetSessionConfigOptionRequest, SetSessionConfigOptionResponse, SetSessionModeRequest,
     SetSessionModeResponse, SetSessionModelRequest, SetSessionModelResponse,
 };
 use codex_core::{
@@ -208,7 +208,9 @@ impl Agent for CodexAgent {
             .load_session(true);
 
         agent_capabilities.session_capabilities =
-            SessionCapabilities::new().list(SessionListCapabilities::new());
+            SessionCapabilities::new()
+                .list(SessionListCapabilities::new())
+                .resume(SessionResumeCapabilities::new());
 
         let mut auth_methods = vec![
             CodexAuthMethod::ChatGpt.into(),
