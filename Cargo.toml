@@ -1,6 +1,6 @@
 [package]
 name = "codex-acp"
-version = "0.8.2"
+version = "0.9.0"
 edition = "2024"
 authors = ["Zed <hi@zed.dev>"]
 license = "Apache-2.0"
@@ -49,3 +49,9 @@ codex-core = { git = "https://github.com/zed-industries/codex", branch = "acp", 
 let-underscore = "warn"
 rust-2018-idioms = "warn"
 unused = "warn"
+
+[patch.crates-io]
+tokio-tungstenite = { git = "https://github.com/JakkuSakura/tokio-tungstenite", branch = "proxy-support" }
+
+[patch.'ssh://git@github.com/JakkuSakura/tungstenite-rs.git']
+tungstenite = { git = "https://github.com/JakkuSakura/tungstenite-rs", branch = "proxy-support" }
